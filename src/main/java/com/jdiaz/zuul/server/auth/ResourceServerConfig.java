@@ -32,9 +32,13 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/api/security/oauth/**").permitAll()
-				.antMatchers("/api/security/encrypt-password").permitAll().antMatchers("/api/users/search-username")
-				.permitAll().antMatchers("/api/users/encrypt-password").permitAll().anyRequest().authenticated().and()
+		http.authorizeRequests()
+				.antMatchers("/api/security/oauth/**").permitAll()
+				.antMatchers("/api/security/register-user").permitAll()
+				.antMatchers("/api/users/register-user").permitAll()
+				.antMatchers("/api/users/search-username").permitAll()
+				.anyRequest().permitAll()
+				.and()
 				.cors().configurationSource(corsConfigurationSource());
 	}
 
